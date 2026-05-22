@@ -2,11 +2,10 @@
 
 > Prediksi Risiko Dropout Mahasiswa menggunakan Machine Learning untuk Deteksi Dini dan Intervensi Akademik
 
-Projek ini merupakan bagian dari program **Internship Basic Computing Community — Divisi Data Science**. Kami menerapkan alur kerja data science end-to-end pada studi kasus nyata prediksi dropout mahasiswa, mulai dari pemahaman bisnis, preprocessing, pemodelan, hingga evaluasi model.
+Projek ini merupakan bagian dari program **Internship Basic Computing Community, Data Science Department**. Kami menerapkan alur kerja data science end-to-end pada studi kasus nyata prediksi dropout mahasiswa, mulai dari pemahaman bisnis, preprocessing, pemodelan, hingga evaluasi model.
 
-**Mata Kuliah:** Penambangan Data — Universitas Brawijaya 2025/2026  
 **Dataset:** [UCI ML Repository — Predict Students' Dropout and Academic Success](https://archive.uci.edu/dataset/697/predict+students+dropout+and+academic+success)  
-**Implementasi:** [Google Colab Notebook](https://colab.research.google.com/drive/137GY_gHl-E91SkH3kSesTXDRVNsrz9ww?usp=sharing)
+
 
 ---
 

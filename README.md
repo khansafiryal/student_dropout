@@ -4,14 +4,15 @@
 
 Projek ini merupakan bagian dari program **Internship Basic Computing Community, Data Science Department**. Kami menerapkan alur kerja data science end-to-end pada studi kasus nyata prediksi dropout mahasiswa, mulai dari pemahaman bisnis, preprocessing, pemodelan, hingga evaluasi model.
 
-**Dataset:** [UCI ML Repository — Predict Students' Dropout and Academic Success](https://archive.uci.edu/dataset/697/predict+students+dropout+and+academic+success)  
+**Dataset:** [UCI ML Repository - Predict Students' Dropout and Academic Success](https://archive.uci.edu/dataset/697/predict+students+dropout+and+academic+success) 
+**Notebook:** [Studen Dropout Prediction] (https://colab.research.google.com/drive/137GY_gHl-E91SkH3kSesTXDRVNsrz9ww?usp=sharing)
 
 
 ---
 
-## 📌 Business Understanding
+## Business Understanding
 
-Dropout mahasiswa berdampak besar — bagi mahasiswa (kerugian waktu & finansial) dan institusi (reputasi, akreditasi). Sistem ini dirancang sebagai **early warning system** yang aktif setelah semester 2 selesai, mengklasifikasikan status akademik mahasiswa ke dalam tiga kelas:
+Dropout mahasiswa berdampak besar bagi mahasiswa (kerugian waktu & finansial) dan institusi (reputasi, akreditasi). Sistem ini dirancang sebagai **early warning system** yang aktif setelah semester 2 selesai, mengklasifikasikan status akademik mahasiswa ke dalam tiga kelas:
 
 | Kelas | Proporsi | Karakteristik |
 |-------|----------|---------------|
@@ -19,13 +20,13 @@ Dropout mahasiswa berdampak besar — bagi mahasiswa (kerugian waktu & finansial
 | Dropout | 32.7% | Berhenti kuliah |
 | **Enrolled** | 18.2% | **Masih aktif — pola fiturnya ambigu, berada di antara Dropout dan Graduate** |
 
-Kelas **Enrolled** menjadi tantangan utama karena secara akademis profilnya tumpang tindih dengan kedua kelas lain — mahasiswa yang masih aktif bisa saja sedang menuju kelulusan *atau* menuju dropout. Hal ini mendorong strategi preprocessing yang dioptimalkan per kelompok algoritma.
+Kelas **Enrolled** menjadi tantangan utama karena pola datanya mirip dengan kedua kelas yang lain. Pola data Enrolled yang terkadang mirip seperti Graduate dan Dropout ini membuat model Machine Learning kesulitan dalam memprediksinya. Namun, kelas Enrolled harus dipertahankan karena mahasiswa yang masih aktif bisa saja sedang menuju kelulusan *atau* menuju dropout. Oleh karena itu, dibuat strategi preprocessing yang dioptimalkan per kelompok algoritma untuk meningkatkan hasil evaluasi.
 
 **Metrik utama: F2-Score kelas Dropout** — recall diberi bobot 4× lebih besar dari precision, karena melewatkan mahasiswa yang akan dropout (false negative) jauh lebih merugikan daripada false alarm.
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 **4.424 baris × 35 fitur** dari Polytechnic Institute of Portalegre, Portugal (Realinho et al., 2022).
 
@@ -39,9 +40,9 @@ Kelas **Enrolled** menjadi tantangan utama karena secara akademis profilnya tump
 
 ---
 
-## ⚙️ Pipeline
+## Pipeline
 
-### Stage 1 — Early Preprocessing *(semua model)*
+### Stage 1 - Early Preprocessing *(semua model)*
 
 Dilakukan sebelum train-test split agar tidak ada data leakage dari koreksi berbasis domain knowledge.
 
@@ -57,22 +58,22 @@ Dataset bersih: **4.321 baris** (103 baris dihapus).
 
 ---
 
-### Stage 2 — Advanced Preprocessing: Mengapa Dipisah Dua Pipeline?
+### Stage 2 - Advanced Preprocessing: Mengapa Dipisah Dua Pipeline?
 
 Algoritma berbeda memiliki sensitivitas berbeda terhadap skala data, distribusi, dan outlier:
 
-- **Tree-based models** (Decision Tree, Random Forest, XGBoost, LightGBM) belajar via *threshold splitting* — tidak terpengaruh skala, tidak perlu distribusi normal, dan lebih toleran terhadap outlier
-- **Non-tree-based models** (KNN, Naive Bayes) bergantung pada *jarak Euclidean* atau *asumsi distribusi Gaussian* — sangat sensitif terhadap skala, outlier, dan bentuk distribusi
+- **Tree-based models** (Decision Tree, Random Forest, XGBoost, LightGBM) belajar via *threshold splitting*, tidak terpengaruh skala, tidak perlu distribusi normal, dan lebih toleran terhadap outlier
+- **Non-tree-based models** (KNN, Naive Bayes) bergantung pada *jarak Euclidean* atau *asumsi distribusi Gaussian*, sangat sensitif terhadap skala, outlier, dan bentuk distribusi
 
 Memaksakan preprocessing yang sama ke semua model justru menurunkan performa, terutama pada kelas Enrolled yang pola fiturnya sudah ambigu. Memisahkan pipeline memastikan setiap model mendapat data dalam format paling optimal sesuai cara kerjanya.
 
 ---
 
-#### 🌲 Pipeline Tree-Based
+#### Pipeline Tree-Based
 
 > Model: **Decision Tree · Random Forest · XGBoost · LightGBM**
 > 
-> Karakteristik: tidak sensitif terhadap skala, outlier, dan redundansi fitur — keputusan berbasis threshold splitting
+> Karakteristik: tidak sensitif terhadap skala, outlier, dan redundansi fitur (keputusan berbasis threshold splitting)
 
 | Langkah | Metode | Alasan |
 |---------|--------|--------|
@@ -84,7 +85,7 @@ Memaksakan preprocessing yang sama ke semua model justru menurunkan performa, te
 
 ---
 
-#### 🔵 Pipeline Non-Tree-Based
+#### Pipeline Non-Tree-Based
 
 > Model: **KNN · Naive Bayes**
 >
@@ -104,7 +105,7 @@ Memaksakan preprocessing yang sama ke semua model justru menurunkan performa, te
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 `Python` · `scikit-learn` · `XGBoost` · `LightGBM` · `Optuna` · `imbalanced-learn` · `pandas` · `numpy` · `matplotlib` · `seaborn`
 

@@ -6,7 +6,7 @@ Projek ini merupakan bagian dari program **Internship Basic Computing Community,
 
 **Dataset:** [UCI ML Repository - Predict Students' Dropout and Academic Success](https://archive.uci.edu/dataset/697/predict+students+dropout+and+academic+success) 
 
-**Notebook:** [Studen Dropout Prediction] (https://colab.research.google.com/drive/137GY_gHl-E91SkH3kSesTXDRVNsrz9ww?usp=sharing)
+**Notebook:** https://colab.research.google.com/drive/137GY_gHl-E91SkH3kSesTXDRVNsrz9ww?usp=sharing
 
 
 ---
